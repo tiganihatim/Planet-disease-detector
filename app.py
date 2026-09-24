@@ -2,6 +2,7 @@ import streamlit as st
 import tensorflow as tf
 import numpy as np
 from PIL import Image
+from huggingface_hub import hf_hub_download
 
 st.title("🌱 Plant Disease Detector")
 
@@ -41,9 +42,14 @@ selected_plant = st.selectbox(
 
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model(
-        "best_plant_disease_model.keras"
+
+    model_path = hf_hub_download(
+        repo_id="tiganihatim/plant-disease-model",
+        filename="best_plant_disease_model.keras"
     )
+
+    return tf.keras.models.load_model(model_path)
+
 
 model = load_model()
 
