@@ -237,7 +237,7 @@ if uploaded_file is not None:
         st.subheader("Plant Health Status")
 
         # Confidence threshold
-        CONFIDENCE_THRESHOLD = 90
+        CONFIDENCE_THRESHOLD = 70
 
         if disease == "healthy":
 
