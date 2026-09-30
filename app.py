@@ -201,7 +201,7 @@ if uploaded_file is not None:
 
     else:
 
-        # --------------------------------------------------
+   # --------------------------------------------------
         # 7. Find disease for selected plant
         # --------------------------------------------------
 
@@ -236,9 +236,24 @@ if uploaded_file is not None:
 
         st.subheader("Plant Health Status")
 
+        # Confidence threshold
+        CONFIDENCE_THRESHOLD = 70
+
         if disease == "healthy":
 
             st.success("🌿 Healthy")
+
+            st.write(
+                f"Confidence: **{confidence:.2f}%**"
+            )
+
+        elif confidence < CONFIDENCE_THRESHOLD:
+
+            st.error("⚠️ Diseased")
+
+            st.write(
+                "No possible known disease has been detected."
+            )
 
             st.write(
                 f"Confidence: **{confidence:.2f}%**"
